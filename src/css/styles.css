@@ -9,7 +9,7 @@ form {
   margin-bottom: 20px;
 }
 
-.search-form{
+.form{
   display: flex;
   justify-content: center;
   min-height: 40px;
