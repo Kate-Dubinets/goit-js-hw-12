@@ -1,25 +1,48 @@
-
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
-const galleryContainer = document.querySelector('.gallery');
-const loadMoreBtn = document.querySelector('#load-more');
-const loader = document.querySelector('#loader');
+const gallery = document.querySelector('.gallery');
+const loader = document.querySelector('.loader');
+const loadMoreBtn = document.querySelector('.load-more');
 
-let lightbox = new SimpleLightbox('.gallery a');
+const lightbox = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionDelay: 250,
+});
 
 export function createGallery(images) {
-  const markup = images.map(image => {
-    return `<a href="${image.largeImageURL}" class="gallery-item">
-              <img src="${image.webformatURL}" alt="${image.tags}" loading="lazy" />
-            </a>`;
-  }).join('');
-  galleryContainer.insertAdjacentHTML('beforeend', markup);
+  const markup = images
+    .map(
+      ({
+        webformatURL,
+        largeImageURL,
+        tags,
+        likes,
+        views,
+        comments,
+        downloads,
+      }) => `
+    <li class="gallery-item">
+      <a class="gallery-link" href="${largeImageURL}">
+        <img class="gallery-image" src="${webformatURL}" alt="${tags}" loading="lazy" />
+      </a>
+      <div class="info">
+        <p><b>Likes:</b> ${likes}</p>
+        <p><b>Views:</b> ${views}</p>
+        <p><b>Comments:</b> ${comments}</p>
+        <p><b>Downloads:</b> ${downloads}</p>
+      </div>
+    </li>`
+  
+    )
+    .join('');
+
+  gallery.insertAdjacentHTML('beforeend', markup);
   lightbox.refresh();
 }
 
 export function clearGallery() {
-  galleryContainer.innerHTML = '';
+  gallery.innerHTML = '';
 }
 
 export function showLoader() {
