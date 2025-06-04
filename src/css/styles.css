@@ -10,7 +10,7 @@ header {
   margin: 30px 0;
 }
 
-#form {
+.form {
   display: inline-flex;
   gap: 10px;
 }
