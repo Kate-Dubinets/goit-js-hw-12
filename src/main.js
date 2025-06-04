@@ -7,7 +7,7 @@ import {
 } from './js/render-functions';
 import iziToast from 'izitoast';
 
-const form = document.querySelector('#search-form');
+const form = document.querySelector('#form');
 const loadMoreBtn = document.querySelector('.load-more');
 
 let searchQuery = '';
