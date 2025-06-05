@@ -101,4 +101,5 @@ button[type='submit']:hover,
 .load-more {
   display: block;
   margin: 20px auto;
+  display: none;
 }
